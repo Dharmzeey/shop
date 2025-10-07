@@ -137,6 +137,7 @@ export async function loginUserApi(data: LoginUserData): Promise<ApiResponse> {
                 return { error: "Failed to Log user in." };
         }
     } catch (error) {
+        console.log(error);
         return { message: "An error occurred during login in." };
     }
 }
