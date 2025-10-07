@@ -217,7 +217,7 @@ export default function TermsPage() {
                     <a href="mailto:legal@dharmzeey.com" className="btn-primary">
                         Email Legal Team
                     </a>
-                    <a href="tel:+2348067414548" className="btn-secondary">
+                    <a href="tel:+2349035877851" className="btn-secondary">
                         Call Support
                     </a>
                 </div>

@@ -20,6 +20,10 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
     const { gadgetType } = await props.params;
     const { brandName } = await props.searchParams;
 
+    // ✅ Decode URL-encoded values (e.g., Smart%20Watches → Smart Watches)
+    const decodedGadgetType = decodeURIComponent(gadgetType);
+    const decodedBrandName = brandName ? decodeURIComponent(brandName) : undefined;
+
     const brands = await fetchProductBrands(gadgetType);
 
     if (!brands || brands.length === 0) {
@@ -30,24 +34,29 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
     }
 
     const brandNames = brands.map((brand) => brand.name).join(", ");
-    const title = brandName
-        ? `${brandName} ${gadgetType} - Premium ${gadgetType} Collection`
-        : `${gadgetType} - Premium ${gadgetType} Collection`;
+    const title = decodedBrandName
+        ? `${decodedBrandName} ${decodedGadgetType} - Premium ${decodedGadgetType} Collection`
+        : `${decodedGadgetType} - Premium ${decodedGadgetType} Collection`;
 
-    const description = brandName
-        ? `Shop premium ${brandName} ${gadgetType.toLowerCase()} at Dharmzeey Shop. Brand new and certified pre-owned ${brandName} devices with warranty. Best prices in Nigeria.`
-        : `Explore our premium ${gadgetType.toLowerCase()} collection including ${brandNames}. Brand new, UK/US direct imports, and certified pre-owned devices with warranty.`;
+    const description = decodedBrandName
+        ? `Shop premium ${decodedBrandName} ${decodedGadgetType.toLowerCase()} at Dharmzeey Shop. Brand new and certified pre-owned ${decodedBrandName} devices with warranty. Best prices in Nigeria.`
+        : `Explore our premium ${decodedGadgetType.toLowerCase()} collection including ${brandNames}. Brand new, UK/US direct imports, and certified pre-owned devices with warranty.`;
 
     const keywords = [
-        gadgetType,
-        `${gadgetType} Nigeria`,
-        `buy ${gadgetType}`,
-        `${gadgetType} store`,
-        `premium ${gadgetType}`,
-        ...brands.map(brand => `${brand.name} ${gadgetType}`),
-        ...(brandName ? [`${brandName} ${gadgetType}`, `${brandName} store Nigeria`] : []),
+        decodedGadgetType,
+        `${decodedGadgetType} Nigeria`,
+        `buy ${decodedGadgetType}`,
+        `${decodedGadgetType} store`,
+        `premium ${decodedGadgetType}`,
+        ...brands.map((brand) => `${brand.name} ${decodedGadgetType}`),
+        ...(decodedBrandName
+            ? [
+                `${decodedBrandName} ${decodedGadgetType}`,
+                `${decodedBrandName} store Nigeria`,
+            ]
+            : []),
         "electronics store Nigeria",
-        "Dharmzeey Shop"
+        "Dharmzeey Shop",
     ];
 
     return {
@@ -63,7 +72,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
                     url: "/og-category.jpg",
                     width: 1200,
                     height: 630,
-                    alt: `${gadgetType} at Dharmzeey Shop`,
+                    alt: `${decodedGadgetType} at Dharmzeey Shop`,
                 },
             ],
         },
@@ -74,11 +83,12 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
             images: ["/og-category.jpg"],
         },
         alternates: {
-            canonical: `/products/${gadgetType}${brandName ? `?brandName=${brandName}` : ''}`,
+            canonical: `/products/${encodeURIComponent(decodedGadgetType)}${decodedBrandName ? `?brandName=${encodeURIComponent(decodedBrandName)}` : ""
+                }`,
         },
         other: {
-            "product:category": gadgetType,
-            ...(brandName && { "product:brand": brandName }),
+            "product:category": decodedGadgetType,
+            ...(decodedBrandName && { "product:brand": decodedBrandName }),
         },
     };
 };
@@ -87,7 +97,8 @@ export default async function DevicePage({ params, searchParams }: Props) {
     const { gadgetType } = await params;
     const { brandName } = await searchParams;
 
-    console.log("Gadget Type:", gadgetType);
+    // ✅ Decode before use
+    const decodedGadgetType = decodeURIComponent(gadgetType);
 
     const brands = await fetchProductBrands(gadgetType);
     const products = brandName
@@ -97,9 +108,9 @@ export default async function DevicePage({ params, searchParams }: Props) {
     if (brands.length >= 1 && products.length >= 1) {
         return (
             <ProductClient
-            gadgetType={decodeURIComponent(gadgetType)}
-            brands={brands}
-            products={products}
+                gadgetType={decodedGadgetType}
+                brands={brands}
+                products={products}
             />
         );
     }

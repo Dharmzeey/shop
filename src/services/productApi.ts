@@ -24,8 +24,13 @@ export async function fetchProductCategories() {
 }
 
 export async function fetchAllProducts() {
+    const token = await fetchAccessTokenCookie();
     const response = await fetch(PRODUCTS_URL, {
-        next: { revalidate: 300 } // Purge and recache every 5 minutes (300 seconds)
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token?.value || ""}`
+        },
+        next: { revalidate: 300 }
     });
     const products: Product[] = await response.json();
     if (!response.ok) {
@@ -41,7 +46,7 @@ export async function fetchProductById(id: string) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token?.value || ""}`
         },
-        next: { revalidate: 300 } // Purge and recache every 5 minutes (300 seconds)
+        next: { revalidate: 300 }
     });
     const product: Product = await response.json();
     if (!response.ok) {
@@ -52,7 +57,7 @@ export async function fetchProductById(id: string) {
 
 export async function fetchProductBrands(categoryName: string) {
     const response = await fetch(PRODUCT_BRAND_URL(categoryName), {
-        next: { revalidate: 300 } // Purge and recache every 5 minutes (300 seconds)
+        next: { revalidate: 300 }
     });
     const brands: Brand[] = await response.json();
     if (!response.ok) {
@@ -62,8 +67,13 @@ export async function fetchProductBrands(categoryName: string) {
 }
 
 export async function fetchProductsByCategory(categoryName: string) {
+    const token = await fetchAccessTokenCookie();
     const response = await fetch(PRODUCT_BY_CATEGORY_URL(categoryName), {
-        next: { revalidate: 300 } // Purge and recache every 5 minutes (300 seconds)
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token?.value || ""}`
+        },
+        next: { revalidate: 300 }
     });
     const products: Product[] = await response.json();
     if (!response.ok) {
@@ -85,7 +95,7 @@ export async function fetchProductsByBrand(categoryName: string, brandName: stri
 
 export async function fetchSimilarProducts(productId: string) {
     const response = await fetch(SIMILAR_PRODUCTS_URL(productId), {
-        next: { revalidate: 300 } // Purge and recache every 5 minutes (300 seconds)
+        next: { revalidate: 300 }
     });
     const products: Product[] = await response.json();
     if (!response.ok) {

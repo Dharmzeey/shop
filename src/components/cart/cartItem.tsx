@@ -27,7 +27,7 @@ export default function CartItem({
 
     const increament = async () => {
         if (isUpdating) return;
-        
+
         if (productCount != undefined && count < productCount) {
             setIsUpdating(true);
             const response = await modifyCartApi({ product_id: cartItem.product.id, action: "increament" });
@@ -56,7 +56,7 @@ export default function CartItem({
 
     const decreament = async () => {
         if (isUpdating) return;
-        
+
         if (productCount != undefined && count > 1) {
             setIsUpdating(true);
             const response = await modifyCartApi({ product_id: cartItem.product.id, action: "decreament" });
@@ -85,7 +85,7 @@ export default function CartItem({
 
     const remove = async () => {
         if (isUpdating) return;
-        
+
         setIsUpdating(true);
         const response = await modifyCartApi({ product_id: cartItem.product.id, action: "remove" });
         if (response.status === 202) {
@@ -106,7 +106,7 @@ export default function CartItem({
     };
 
     return (
-        <motion.div 
+        <motion.div
             layout
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -133,12 +133,16 @@ export default function CartItem({
                             </Link>
                             <div className="text-sm text-gray-500 mt-1">{cartItem.product.brand}</div>
                             <div className="flex items-center gap-2 mt-2">
-                                <span className={`status-badge text-xs ${cartItem.product.utilizationStatus === "Brand New" ? "status-new" : "status-used"}`}>
-                                    {cartItem.product.utilizationStatus}
-                                </span>
+                                {
+                                    cartItem.product.utilizationStatus && (
+                                        <span className={`status-badge text-xs ${cartItem.product.utilizationStatus === "Brand New" ? "status-new" : "status-used"}`}>
+                                            {cartItem.product.utilizationStatus}
+                                        </span>
+                                    )
+                                }
                             </div>
                         </div>
-                        
+
                         <div className="md:text-right">
                             <div className="text-xl font-bold text-main-color">
                                 ₦{numberWithCommas(cartItem.product.price)}
@@ -189,7 +193,7 @@ export default function CartItem({
                             >
                                 <FontAwesomeIcon icon={faTrash} className="w-4 h-4" />
                             </motion.button>
-                            
+
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}

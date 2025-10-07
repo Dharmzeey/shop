@@ -39,24 +39,24 @@ export default function HomeCarousel() {
     }, [deals.length]);
 
     const defaultSlides = [
-        {
-            id: "default-1",
-            title: "Everyday Essentials",
-            details: "From groceries to home care — shop what you need, when you need it.",
-            image: "/logo.png",
-            link_to: "/products/Essentials"
-        },
+        // {
+        //     id: "default-1",
+        //     title: "Everyday Essentials",
+        //     details: "From groceries to home care — shop what you need, when you need it.",
+        //     image: "/logo.png",
+        //     link_to: "/products/Essentials"
+        // },
         {
             id: "default-2",
             title: "Fashion & Style",
-            details: "Trendy outfits, footwear, and accessories that match your vibe.",
+            details: "Trendy outfits, and accessories that match your vibe.",
             image: "/logo.png",
             link_to: "/products/Fashion"
         },
         {
             id: "default-3",
             title: "Home & Living",
-            details: "Furniture, décor, and tools to make your space feel like home.",
+            details: "Curtains, blinds, décor, and tools to make your space feel like home.",
             image: "/logo.png",
             link_to: "/products/Home"
         },
@@ -68,12 +68,19 @@ export default function HomeCarousel() {
             link_to: "/products/Beauty"
         },
         {
-            id: "default-5",
-            title: "Electronics & More",
-            details: "Smart gadgets, phones, and accessories — the latest tech made simple.",
+            id: "default-6",
+            title: "Snacks & Treats",
+            details: "Delicious bites, sweet treats, and quick snacks for every craving.",
             image: "/logo.png",
-            link_to: "/products/Electronics"
-        }
+            link_to: "/products/Groceries"
+        },
+        // {
+        //     id: "default-5",
+        //     title: "Electronics & More",
+        //     details: "Smart gadgets, phones, and accessories — the latest tech made simple.",
+        //     image: "/logo.png",
+        //     link_to: "/products/Electronics"
+        // }
     ];
 
     const slidesToShow = deals.length > 0 ? deals : defaultSlides;

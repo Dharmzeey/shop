@@ -259,7 +259,7 @@ export default function ShippingPage() {
                     Need help with delivery options or tracking your order? Our shipping team is here to assist.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="tel:+2348067414548" className="btn-primary">
+                    <a href="tel:+2349035877851" className="btn-primary">
                         Call Shipping Support
                     </a>
                     <a href="mailto:shipping@dharmzeey.com" className="btn-secondary">
