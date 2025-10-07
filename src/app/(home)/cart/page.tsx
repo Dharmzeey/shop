@@ -1,6 +1,5 @@
 'use client';
 
-import { ActionLink } from "@/components/actionComponents";
 import CartItem from "@/components/cart/cartItem";
 import { EmptyCart } from "@/components/cart/emptyCart";
 import Loading from "@/components/loading";

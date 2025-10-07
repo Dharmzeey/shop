@@ -175,7 +175,7 @@ export default function ReturnsPage() {
                     Contact our support team to begin the return process. We&apos;ll guide you through every step.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="tel:+2348067414548" className="btn-primary">
+                    <a href="tel:+2349035877851" className="btn-primary">
                         Call Support
                     </a>
                     <a href="mailto:support@dharmzeey.com" className="btn-secondary">

@@ -21,7 +21,7 @@ type Props = {
 export const generateMetadata = async (props: Props): Promise<Metadata> => {
     const params = await props.params;
     const product = await fetchProductById(params.productInfo.slice(-36));
-    
+
     if (!product) {
         return {
             title: `Product Not Found | Dharmzeey Shop`,
@@ -56,7 +56,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
 
     return {
         title: `${product.name} - ${product.brand} ${product.category}`,
-        description: `${product.description.slice(0, 160)}... Buy ${product.name} at Dharmzeey Shop. ${product.utilizationStatus} ${product.brand} ${product.category} with warranty. Price: ₦${numberWithCommas(product.price)}`,
+        description: `${product.description.slice(0, 160)}... Buy ${product.name} at Dharmzeey Shop. Price: ₦${numberWithCommas(product.price)}`,
         keywords: [
             product.name,
             product.brand,
@@ -116,8 +116,8 @@ export default async function ProductDetail({ params }: Props) {
         "Genuine product guarantee",
         "1-year warranty included",
         "Free delivery within Ibadan",
-        "30-day return policy",
-        "Expert technical support"
+        // "30-day return policy",
+        // "Expert technical support"
     ];
 
     return (
@@ -156,9 +156,13 @@ export default async function ProductDetail({ params }: Props) {
                 <div className="space-y-6">
                     {/* Status Badges */}
                     <div className="flex gap-3">
-                        <span className={`status-badge ${product.utilizationStatus === "Brand New" ? "status-new" : "status-used"}`}>
-                            {product.utilizationStatus}
-                        </span>
+                        {
+                            product.utilizationStatus && (
+                                <span className={`status-badge ${product.utilizationStatus === "Brand New" ? "status-new" : "status-used"}`}>
+                                    {product.utilizationStatus}
+                                </span>
+                            )
+                        }
                         <span className={`status-badge ${product.availabilityStatus === "In Stock" ? "status-in-stock" : "status-out-of-stock"}`}>
                             {product.availabilityStatus}
                         </span>
@@ -168,14 +172,14 @@ export default async function ProductDetail({ params }: Props) {
                     <div>
                         <div className="text-xs text-gray-500 mb-1">{product.brand}</div>
                         <h1 className="text-base md:text-lg font-bold text-gray-900 mb-3">{product.name}</h1>
-                        
+
                         {/* Rating */}
                         <div className="flex items-center gap-2 mb-3">
                             <div className="flex items-center">
                                 {[...Array(5)].map((_, i) => (
-                                    <FontAwesomeIcon 
+                                    <FontAwesomeIcon
                                         key={i}
-                                        icon={faStar} 
+                                        icon={faStar}
                                         className={`w-3 h-3 ${i < 4 ? 'text-yellow-400' : 'text-gray-200'}`}
                                     />
                                 ))}
@@ -213,7 +217,7 @@ export default async function ProductDetail({ params }: Props) {
                             <IncreamentDecreamentCheck product={product} />
                             <Wishlist product_id={productId} userWishlist={product.user_wishlist} />
                         </div>
-                        
+
                         {/* Trust Badges */}
                         <div className="flex items-center justify-center space-x-4 py-3 bg-gray-50 rounded-xl">
                             <div className="flex items-center space-x-1 text-xs text-gray-600">
@@ -224,10 +228,10 @@ export default async function ProductDetail({ params }: Props) {
                                 <FontAwesomeIcon icon={faTruck} className="w-3 h-3 text-blue-500" />
                                 <span>Fast Delivery</span>
                             </div>
-                            <div className="flex items-center space-x-1 text-xs text-gray-600">
+                            {/* <div className="flex items-center space-x-1 text-xs text-gray-600">
                                 <FontAwesomeIcon icon={faExchangeAlt} className="w-3 h-3 text-purple-500" />
                                 <span>Easy Returns</span>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

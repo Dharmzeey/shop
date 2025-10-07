@@ -101,21 +101,21 @@ export default function Footer() {
                                     Help & Support
                                 </Link>
                             </li>
-                            <li>
+                            {/* <li>
                                 <Link href="/returns" className="text-gray-300 hover:text-white transition-colors duration-200">
                                     Returns & Exchanges
                                 </Link>
-                            </li>
-                            <li>
+                            </li> */}
+                            {/* <li>
                                 <Link href="/warranty" className="text-gray-300 hover:text-white transition-colors duration-200">
                                     Warranty Information
                                 </Link>
-                            </li>
-                            <li>
+                            </li> */}
+                            {/* <li>
                                 <Link href="/trade-in" className="text-gray-300 hover:text-white transition-colors duration-200">
                                     Trade-In Program
                                 </Link>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
 

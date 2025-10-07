@@ -219,7 +219,7 @@ export default function WarrantyPage() {
                     Our warranty team is ready to help you with any product issues or claims.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="tel:+2348067414548" className="btn-primary">
+                    <a href="tel:+2349035877851" className="btn-primary">
                         Call Warranty Support
                     </a>
                     <a href="mailto:warranty@dharmzeey.com" className="btn-secondary">

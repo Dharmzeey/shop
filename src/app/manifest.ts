@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
     return {
         name: 'Dharmzeey Shop - Complete Online Marketplace',
         short_name: 'Dharmzeey Shop',
-        description: 'Your complete online marketplace for electronics, fashion, home essentials, beauty, sports, and more. Shop everything you need in one place.',
+        description: 'Your complete online marketplace for fashion, home essentials, electronics, beauty, sports, and more. Shop everything you need in one place.',
         start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',

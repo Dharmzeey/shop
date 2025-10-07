@@ -187,7 +187,7 @@ export default function PrivacyPage() {
                     <a href="mailto:privacy@dharmzeey.com" className="btn-primary">
                         Contact Privacy Team
                     </a>
-                    <a href="tel:+2348067414548" className="btn-secondary">
+                    <a href="tel:+2349035877851" className="btn-secondary">
                         Call Support
                     </a>
                 </div>

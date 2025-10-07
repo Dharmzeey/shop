@@ -21,8 +21,7 @@ export default function Home() {
             try {
                 const data = await fetchProductCategories();
                 setFetchedCategories(data);
-            } catch (err) {
-                console.log(err);
+            } catch {
                 setError("Failed to load products.");
             } finally {
                 setLoading(false);
@@ -37,8 +36,7 @@ export default function Home() {
             try {
                 const data = await fetchAllProducts();
                 setProducts(data);
-            } catch (err) {
-                console.log(err);
+            } catch {
                 setError("Failed to load products.");
             } finally {
                 setLoading(false);
