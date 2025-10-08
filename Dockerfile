@@ -1,8 +1,6 @@
 # 1. Use official Node image
 FROM node:22-slim AS builder
 
-RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
-
 # 2. Set working directory
 WORKDIR /app
 
@@ -24,13 +22,14 @@ ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 # 5. Copy the rest of your app code
 COPY . .
 
+ENV NODE_TLS_REJECT_UNAUTHORIZED=0
+RUN npm run build
+
 # 6. Build the Next.js app
 RUN npm run build
 
 # 7. Serve the app using a lightweight container
 FROM node:22-slim AS runner
-
-RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
 
 WORKDIR /app
 
