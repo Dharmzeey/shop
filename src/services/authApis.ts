@@ -230,5 +230,5 @@ export async function createNewPasswordApi(data: CreateNewPasswordData): Promise
 
 
 export async function logout() {
-    removeAllTokens()
+    await removeAllTokens()
 }

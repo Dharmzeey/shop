@@ -56,8 +56,8 @@ export default function Header() {
         }
     };
 
-    const handleLogout = () => {
-        logout();
+    const handleLogout = async () => {
+        await logout();
         router.push("/");
         setUserMenuOpen(false);
     };
