@@ -24,6 +24,7 @@ export async function createUserApi(data: CreateUserData): Promise<ApiResponse> 
             },
             body: JSON.stringify(data),
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 409:
@@ -57,6 +58,7 @@ export async function verifyCodeApi(data: PinVerificationData): Promise<ApiRespo
 
             body: JSON.stringify(data),
         });
+        console.log(response)
         switch (response.status) {
             case 401:
                 return {
@@ -91,6 +93,7 @@ export async function resendEmailVerificationApi(): Promise<ApiResponse> {
                 Authorization: `Bearer ${token?.value || ""}`,
             },
         });
+        console.log(response)
         switch (response.status) {
             case 201:
                 return { message: "Email has already been verified", status: 201 };
@@ -117,6 +120,7 @@ export async function loginUserApi(data: LoginUserData): Promise<ApiResponse> {
             },
             body: JSON.stringify(data),
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 401:
@@ -151,6 +155,7 @@ export async function forgotPasswordApi(data: ForgotPasswordData): Promise<ApiRe
             },
             body: JSON.stringify(data),
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 200:
@@ -180,6 +185,7 @@ export async function verifyResetCodeApi(data: ResetPasswordPinData): Promise<Ap
 
             body: JSON.stringify(data),
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 401:
@@ -210,6 +216,7 @@ export async function createNewPasswordApi(data: CreateNewPasswordData): Promise
             },
             body: JSON.stringify(data)
         });
+        console.log(response)
         const responseBody = await response.json()
         switch (response.status) {
             case 403:
