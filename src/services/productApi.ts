@@ -26,14 +26,15 @@ export async function fetchProductCategories() {
 export async function fetchAllProducts() {
     const token = await fetchAccessTokenCookie();
     const response = await fetch(PRODUCTS_URL, {
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token?.value || ""}`
-        },
-        next: { revalidate: 300 }
+        // headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: `Bearer ${token?.value || ""}`
+        // },
+        // next: { revalidate: 300 }
     });
     const products: Product[] = await response.json();
     if (!response.ok) {
+        console.log(response)
         throw new Error("Failed to fetch products");
     }
     return products;
@@ -69,11 +70,11 @@ export async function fetchProductBrands(categoryName: string) {
 export async function fetchProductsByCategory(categoryName: string) {
     const token = await fetchAccessTokenCookie();
     const response = await fetch(PRODUCT_BY_CATEGORY_URL(categoryName), {
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token?.value || ""}`
-        },
-        next: { revalidate: 300 }
+        // headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: `Bearer ${token?.value || ""}`
+        // },
+        // next: { revalidate: 300 }
     });
     const products: Product[] = await response.json();
     if (!response.ok) {
