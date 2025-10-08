@@ -1,7 +1,7 @@
 # 1. Use official Node image
 FROM node:22-slim AS builder
 
-RUN apk add --no-cache ca-certificates && update-ca-certificates
+RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
 
 # 2. Set working directory
 WORKDIR /app
@@ -30,7 +30,7 @@ RUN npm run build
 # 7. Serve the app using a lightweight container
 FROM node:22-slim AS runner
 
-RUN apk add --no-cache ca-certificates && update-ca-certificates
+RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
 
 WORKDIR /app
 
