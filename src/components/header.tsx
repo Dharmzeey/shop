@@ -34,7 +34,7 @@ export default function Header() {
                 const data = await fetchProductCategories();
                 setFetchedCategories(data);
             } catch (err) {
-                console.log(err);
+                // console.log(err);
                 setError("Failed to load products.");
             } finally {
                 setLoading(false);

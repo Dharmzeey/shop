@@ -22,7 +22,7 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
     const params = await props.params;
     const product = await fetchProductById(params.productInfo.slice(-36));
 
-    console.log(product)
+    // console.log(product)
 
     if (!product) {
         return {
