@@ -16,6 +16,7 @@ export async function initiatePaymentApi(): Promise<ApiResponse> {
                 "Content-Type": "application/json",
             },
         })
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 200:

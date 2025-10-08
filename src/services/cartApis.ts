@@ -23,6 +23,7 @@ export async function addToCartApi(data: CartData): Promise<ApiResponse> {
             },
             body: JSON.stringify(data),
         })
+        console.log(response)
         const sessionId = response.headers.get('set-cookie');
         await setSessionId(sessionId!)
 
@@ -49,6 +50,7 @@ export async function modifyCartApi(data: CartData): Promise<ApiResponse> {
             },
             body: JSON.stringify(data),
         })
+        console.log(response)
         const sessionId = response.headers.get('set-cookie');
         await setSessionId(sessionId!)
         const responseBody = await response.json();
@@ -72,6 +74,7 @@ export async function getCartApi(): Promise<ApiResponse> {
                 Cookie: `sessionid=${await getSessionId()}`,
             }
         })
+        console.log(response)
         const sessionId = response.headers.get('set-cookie');
         await setSessionId(sessionId!)
         const responseBody = await response.json();
@@ -96,6 +99,7 @@ export async function getCartSummaryApi(): Promise<ApiResponse> {
                 Cookie: `sessionid=${await getSessionId()}`,
             }
         })
+        console.log(response)
         const sessionId = response.headers.get('set-cookie');
         await setSessionId(sessionId!)
         const responseBody = await response.json();
@@ -121,6 +125,7 @@ export async function checkoutItemsApi(): Promise<ApiResponse> {
                 Authorization: `Bearer ${token?.value || ""}`,
             }
         })
+        console.log(response)
         const sessionId = response.headers.get('set-cookie');
         await setSessionId(sessionId!)
         const responseBody = await response.json();
@@ -143,6 +148,7 @@ export async function checkoutDetailsApi(): Promise<ApiResponse> {
                 Authorization: `Bearer ${token?.value || ""}`,
             }
         })
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 200:
@@ -174,6 +180,7 @@ export async function orderAddressSummaryApi(data: UserDeliveryData): Promise<Ap
             },
             body: JSON.stringify(data)
         });
+        console.log(response)
         const sessionId = response.headers.get('set-cookie');
         await setSessionId(sessionId!)
         const responseBody = await response.json();

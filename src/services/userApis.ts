@@ -17,6 +17,7 @@ export async function verifyUserInfoApi(): Promise<ApiResponse> {
                 Authorization: `Bearer ${token?.value || ""}`,
             }
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 200:
@@ -47,6 +48,7 @@ export async function createUserInfoApi(data: UserProfileData): Promise<ApiRespo
             },
             body: JSON.stringify(data)
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 401:
@@ -80,6 +82,7 @@ export async function retrieveUserInfoApi(): Promise<ApiResponse> {
                 Authorization: `Bearer ${token?.value || ""}`
             },
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 404:
@@ -109,6 +112,7 @@ export async function updateUserInfoApi(data: UserProfileData): Promise<ApiRespo
             },
             body: JSON.stringify(data)
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 401: {
@@ -141,6 +145,7 @@ export async function deleteUserApi(): Promise<ApiResponse> {
                 Authorization: `Bearer ${token?.value || ""}`
             },
         });
+        console.log(response)
         switch (response.status) {
             case 401:
                 return { error: "You are not logged in", status: 401 }
@@ -169,6 +174,7 @@ export async function verifyUserAddressApi(): Promise<ApiResponse> {
                 Authorization: `Bearer ${token?.value || ""}`,
             }
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 200:
@@ -200,6 +206,7 @@ export async function createUserAddressApi(data: UserAddressData): Promise<ApiRe
             },
             body: JSON.stringify(data)
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 401:
@@ -233,6 +240,7 @@ export async function retrieveUserAddressApi(): Promise<ApiResponse> {
                 Authorization: `Bearer ${token?.value || ""}`
             },
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 404:
@@ -262,6 +270,7 @@ export async function updateUserAddressApi(data: UserAddressData): Promise<ApiRe
             },
             body: JSON.stringify(data)
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 401: {
@@ -298,6 +307,7 @@ export async function pendingOrdersApi(): Promise<ApiResponse> {
                 Authorization: `Bearer ${token?.value || ""}`
             }
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 200:
@@ -324,6 +334,7 @@ export async function completedOrdersApi(): Promise<ApiResponse> {
                 Authorization: `Bearer ${token?.value || ""}`
             }
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 200:
@@ -354,6 +365,7 @@ export async function addWishlist(product_id: string): Promise<ApiResponse> {
             },
             body: JSON.stringify({ 'product_id': product_id })
         });
+        console.log(response)
         const responseBody = await response.json();
         switch (response.status) {
             case 201:

@@ -6,6 +6,7 @@ import { FETCH_LGAS, FETCH_STATES } from "@/utils/urls/baseUrls";
 export async function fetchStatesApi(): Promise<ApiResponse> {
     try {
         const response = await fetch(FETCH_STATES);
+        console.log(response)
         const responseBody = await response.json()
         switch (response.status) {
             case 200:
@@ -21,6 +22,7 @@ export async function fetchStatesApi(): Promise<ApiResponse> {
 export async function fetchLgasApi(state_id: string): Promise<ApiResponse> {
     try {
         const response = await fetch(FETCH_LGAS(state_id));
+        console.log(response)
         const responseBody = await response.json()
         switch (response.status) {
             case 200:

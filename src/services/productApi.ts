@@ -16,6 +16,7 @@ export async function fetchProductCategories() {
     const response = await fetch(PRODUCT_CATEGORIES_URL, {
         next: { revalidate: 300 } // Purge and recache every 5 minutes (300 seconds)
     });
+    console.log(response)
     const categories: Category[] = await response.json();
     if (!response.ok) {
         throw new Error("Failed to fetch products");
@@ -32,9 +33,9 @@ export async function fetchAllProducts() {
         // },
         // next: { revalidate: 300 }
     });
+    console.log(response)
     const products: Product[] = await response.json();
     if (!response.ok) {
-        console.log(response)
         throw new Error("Failed to fetch products");
     }
     return products;
@@ -49,7 +50,9 @@ export async function fetchProductById(id: string) {
         },
         next: { revalidate: 300 }
     });
+    console.log(response)
     const product: Product = await response.json();
+    console.log(response)
     if (!response.ok) {
         return null;
     }
@@ -60,6 +63,7 @@ export async function fetchProductBrands(categoryName: string) {
     const response = await fetch(PRODUCT_BRAND_URL(categoryName), {
         next: { revalidate: 300 }
     });
+    console.log(response)
     const brands: Brand[] = await response.json();
     if (!response.ok) {
         throw new Error("Failed to fetch brands");
@@ -76,6 +80,7 @@ export async function fetchProductsByCategory(categoryName: string) {
         // },
         // next: { revalidate: 300 }
     });
+    console.log(response)
     const products: Product[] = await response.json();
     if (!response.ok) {
         throw new Error("Failed to fetch products");
@@ -87,6 +92,7 @@ export async function fetchProductsByBrand(categoryName: string, brandName: stri
     const response = await fetch(PRODUCT_BY_BRAND_URL(categoryName, brandName), {
         cache: "force-cache"
     });
+    console.log(response)
     const products: Product[] = await response.json();
     if (!response.ok) {
         throw new Error("Failed to fetch products");
@@ -98,6 +104,7 @@ export async function fetchSimilarProducts(productId: string) {
     const response = await fetch(SIMILAR_PRODUCTS_URL(productId), {
         next: { revalidate: 300 }
     });
+    console.log(response)
     const products: Product[] = await response.json();
     if (!response.ok) {
         throw new Error("Failed to fetch products");
