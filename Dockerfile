@@ -22,9 +22,6 @@ ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 # 5. Copy the rest of your app code
 COPY . .
 
-ENV NODE_TLS_REJECT_UNAUTHORIZED=0
-RUN npm run build
-
 # 6. Build the Next.js app
 RUN npm run build
 
@@ -33,10 +30,16 @@ FROM node:22-slim AS runner
 
 WORKDIR /app
 
+# *** FIX: Update CA certificates in the runner image ***
+# This step ensures the system's list of trusted root CAs is fully up-to-date.
+RUN apt-get update && \
+    apt-get install -y ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
 # Only copy the production build
 COPY --from=builder /app/.next .next
 COPY --from=builder /app/public ./public
-# COPY --from=builder /app/node_modules ./node_modules
+# COPY --from=builder /app/node_modules ./node_modules  <-- Not needed if using npm ci
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/next.config.ts ./next.config.ts
 
